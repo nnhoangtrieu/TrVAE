@@ -68,3 +68,32 @@ for epoch in range(arg.epochs) :
         loss.backward(), optim.step(), optim.zero_grad(), clip_grad_norm_(model.parameters(), 5)
 
     
+    model.eval()
+    gen_mol = torch.empty(0).to(device)
+
+    with torch.no_grad() : 
+        for _ in range(60) : 
+            z = torch.randn(500, max_len, arg.d_latent).to(device)
+            z_mask = torch.ones(500, max_len).to(device)
+            tgt = torch.zeros(500, max_len, dtype=torch.long).to(device)
+
+            for _ in range(max_len - 1) : 
+                pred = model.inference(z, tgt, z_mask, get_mask(tgt, vocab).to(device))
+                _, idx = torch.topk(pred, 1, dim=-1)
+                idx = idx[:, -1, :]
+                tgt = torch.cat([tgt, idx], dim=1)
+
+            gen_mol = torch.cat([gen_mol, tgt], dim=0)
+        gen_mol = gen_mol.tolist() 
+        gen_mol = parallel_f(read_gen_smi, gen_mol)
+        valid_mol = parallel_f(get_valid, gen_mol)
+        valid_mol = [m for m in valid_mol if m != None]
+        unique_mol = set(valid_mol)
+
+        uniqueness = (len(unique_mol) / len(valid_mol)) * 100 if valid_mol else 0
+        novel_mol = [m for m in parallel_f(get_novel, unique_mol) if m is not None]
+        novelty = (len(novel_mol) / len(unique_mol)) * 100 if unique_mol else 0
+        validity = (len(valid_mol) / 30000) * 100    
+
+
+        
