@@ -25,7 +25,7 @@ parser.add_argument('--kl_type', type=str, default='cyclic', help='KL type: mono
 parser.add_argument('--kl_start', type=int, default=0, help='for monotonic, at which epoch to start increasing beta')
 parser.add_argument('--kl_w_start', type=float, default=0, help='longest length of input for dataset')
 parser.add_argument('--kl_w_end', type=float, default=0.0003, help='longest length of input for dataset')
-parser.add_argument('--kl_cycle', type=int, default=10, help='longest length of input for dataset')
+parser.add_argument('--kl_cycle', type=int, default=4, help='longest length of input for dataset')
 parser.add_argument('--kl_ratio', type=float, default=0.9, help='longest length of input for dataset')
 
 arg = parser.parse_args()
@@ -118,6 +118,8 @@ def loss_fn(pred, tgt, mu, sigma, beta) :
     reconstruction_loss = F.nll_loss(pred.reshape(-1, len(vocab)), tgt.reshape(-1), ignore_index=vocab['<PAD>'])
     kl_loss = -0.5 * torch.sum(1 + sigma - mu.pow(2) - sigma.exp()).mean() / arg.batch_size
     return  reconstruction_loss + kl_loss * beta, reconstruction_loss, kl_loss
+
+
 
 
 class MyDataset(torch.utils.data.Dataset) :
