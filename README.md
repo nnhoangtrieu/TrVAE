@@ -26,22 +26,30 @@ python train.py --max_len 40
 ```
 
 ### KL Annealling 
-The biggest problem that every VAE architecture faces is KL Vanishing or Posterior Collapse. TrVAE implements 2 types of beta scheduling:
-- monotonic: Beta is increased monotonically throughout each epoch 
-    - kl_start: epoch to start increasing beta 
-    - kl_w_start: starting value for beta at the begin of training 
-    - kl_w_end: highest value beta can reach at the end of training
+The biggest problem that every VAE architecture faces is KL Vanishing or Posterior Collapse. TrVAE implements 2 types of β scheduling:
+- monotonic: β is increased monotonically throughout each epoch 
+    - **kl_start**: epoch to start increasing β 
+    - **kl_w_start**: starting value for β at the begin of training 
+    - **kl_w_end**: highest value β can reach at the end of training
 
 ```bash
 python train.py --kl_type "monotonic" --kl_start 5 --kl_w_start 0 --kl_w_end 0.003
 ```
 
-- cyclic: Beta is increased and dropped each cycle 
-    - kl_w_start: starting value for beta at begin of each cycle
-    - kl_w_end: highest value beta can reach at the end of each cycle 
-    - kl_cycle: the number of cycle during training 
-    - kl_ratio: (should be between 0 and 1) how fast beta is increased. Smaller beta will increase the number of epoch beta stays at the maximum (kl_w_end)
+- cyclic: β is increased and dropped each cycle 
+    - **kl_w_start**: starting value for β at begin of each cycle
+    - **kl_w_end**: highest value β can reach at the end of each cycle 
+    - **kl_cycle**: the number of cycle during training 
+    - **kl_ratio**: (should be between 0 and 1) how fast β is increased. Smaller β will increase the number of epoch β stays at the maximum (kl_w_end)
 
 ```bash
 python train.py --kl_type "cyclic" --kl_w_start 0 --kl_w_end 0.0003 --kl_cycle 8 --kl_ratio 0.9
 ```
+
+
+
+
+
+
+
+
