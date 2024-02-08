@@ -1,0 +1,23 @@
+Model Parameters:
+d_model : 512
+d_latent : 256
+d_ff : 1024
+num_head : 8
+num_layer : 1
+dropout : 0.5
+lr : 0.0003
+epochs : 32
+batch_size : 128
+max_len : 15
+kl_type : monotonic
+kl_start : 0
+kl_w_start : 0
+kl_w_end : 0.0003
+kl_cycle : 4
+kl_ratio : 0.9
+checkpoint_name : model
+epoch_checkpoint : -1
+Epoch: 1 --- Train Loss: 3.133887
+Validity: 100.00% --- Uniqueness: 0.00% --- Novelty: 100.00%1. CCCCCCCCCCCCCCCC
+Epoch: 2 --- Train Loss: 2.164658
+Validity: 100.00% --- Uniqueness: 0.00% --- Novelty: 100.00%1. CCCCCCCCCCCCCCCC
