@@ -27,7 +27,7 @@ parser.add_argument('--kl_w_start', type=float, default=0, help='longest length 
 parser.add_argument('--kl_w_end', type=float, default=0.0003, help='longest length of input for dataset')
 parser.add_argument('--kl_cycle', type=int, default=4, help='longest length of input for dataset')
 parser.add_argument('--kl_ratio', type=float, default=0.9, help='longest length of input for dataset')
-parser.add_argument('--checkpoint_name', type=str, default='model', help='name of checkpoint for model')
+parser.add_argument('--name_checkpoint', type=str, default='model', help='name of checkpoint for model')
 parser.add_argument('--epoch_checkpoint', type=int, default=-1, help='weight of epoch of trained model to use')
 
 arg = parser.parse_args()
