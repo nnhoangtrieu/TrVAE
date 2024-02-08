@@ -28,6 +28,7 @@ python train.py --max_len 40
 
 ### KL Annealling 
 The biggest problem that every VAE architecture faces is KL Vanishing or Posterior Collapse. TrVAE implements 2 types of β scheduling:
+
 ![beta schedule](https://github.com/nnhoangtrieu/TrVAE/assets/107376082/34f68cc1-2cea-424a-97a2-4229119ef436)
 
 - monotonic: β is increased monotonically throughout each epoch 
