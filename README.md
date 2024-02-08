@@ -6,3 +6,7 @@ This repo contains the PyTorch implementation of VAE with Transformer Architectu
 - **genmol_train**: generated molecules generated after each training epoch
 - **model**: architecture of models
 - **tensorboard**: results data for analysis
+
+
+## Training
+The default configuration of the model is: _dmodel_: 512 / _dlatent_: 256 / _dff_: 102
