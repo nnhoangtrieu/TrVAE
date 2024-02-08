@@ -46,7 +46,12 @@ python train.py --kl_type "monotonic" --kl_start 5 --kl_w_start 0 --kl_w_end 0.0
 python train.py --kl_type "cyclic" --kl_w_start 0 --kl_w_end 0.0003 --kl_cycle 8 --kl_ratio 0.9
 ```
 
+## Generate Molecules
+You can look at folder **gen_train** to look at the recorded validity, uniqueness, and novelty the generated molecules, but most importantly is to look at the generate molecules themselves to really judge the performance of the model at each epoch. You can then specify the checkpoint of the model at which epoch to generate molecules. The generated molecules will be save in folder **genmol**
 
+```bash
+python generate.py --name_checkpoint "your_name_checkpoint" --epoch_checkpoint 5
+```
 
 
 
